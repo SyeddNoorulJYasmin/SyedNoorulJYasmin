@@ -1,0 +1,80 @@
+package org.base;
+
+import java.io.File;
+
+
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class FirefoxBrowser {
+	public static WebElement webElement ;
+public static WebDriver driver;
+	
+	public static void screenShot(String name) {
+		try {
+			//Type casting
+			TakesScreenshot ts=(TakesScreenshot)driver;
+			
+			File sourcefile= ts.getScreenshotAs(OutputType.FILE);
+			File targetfile=new File("C:\\Users\\nooru\\OneDrive\\Pictures\\Firefox screenshots\\"+name+".png");
+			FileUtils.copyFile(sourcefile, targetfile);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.gecko.driver","C:\\Users\\nooru\\eclipse-workspace\\SeleniumAutomation\\driver\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("https://www.getcalley.com/page-sitemap.xml");
+		driver.manage().window().maximize();
+		WebElement link1 = driver.findElement(By.xpath("//a[text()='https://www.getcalley.com/']"));
+		link1.click();
+		Thread.sleep(1000);
+		screenShot("firefoxgetcalley1");
+		driver.navigate().back();
+		Thread.sleep(1000);
+		
+		WebElement link2  = driver.findElement(By.xpath("//a[text()='https://www.getcalley.com/calley-call-from-browser/']"));
+		link2.click();
+		Thread.sleep(2000);
+		screenShot("getcalley2");
+		driver.navigate().back();
+		Thread.sleep(1000);
+		
+		WebElement link3  = driver.findElement(By.xpath("//a[text()='https://www.getcalley.com/calley-pro-features/']"));
+		link3.click();
+		Thread.sleep(2000);
+		screenShot("getcalley3");
+		Thread.sleep(1000);
+		driver.navigate().back();
+		
+		WebElement link4  = driver.findElement(By.xpath("//a[text()='https://www.getcalley.com/best-auto-dialer-app/']"));
+		link4.click();
+		Thread.sleep(2000);
+		screenShot("getcalley4");
+		driver.navigate().back();
+		
+		WebElement link5  = driver.findElement(By.xpath("//a[text()='https://www.getcalley.com/how-calley-auto-dialer-app-works/']"));
+		link5.click();
+		Thread.sleep(2000);
+		screenShot("getcalley5");
+		driver.navigate().back();
+		
+		
+		
+		
+		
+	}
+
+
+
+		
+	}
